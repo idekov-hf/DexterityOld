@@ -20,32 +20,32 @@ class MainScene: CCNode {
     
     // touch functions
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        if  buttonWasPressed(buttonArray[0], t: touch) {
-            print("button1 was pressed")
-            buttonArray[0].wasPressed = true
-            buttonArray[1].unlocked = true
-        }
-        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[0].wasPressed {
-            buttonArray[1].wasPressed = true
-            buttonArray[2].unlocked = true
-        }
-        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[1].wasPressed {
-            buttonArray[2].wasPressed = true
-            buttonArray[0].canBeReleased = true
-        }
+//        if  buttonWasPressed(buttonArray[0], t: touch) {
+//            print("button1 was pressed")
+//            buttonArray[0].wasPressed = true
+//            buttonArray[1].unlocked = true
+//        }
+//        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[0].wasPressed {
+//            buttonArray[1].wasPressed = true
+//            buttonArray[2].unlocked = true
+//        }
+//        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[1].wasPressed {
+//            buttonArray[2].wasPressed = true
+//            buttonArray[0].canBeReleased = true
+//        }
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         
-        if buttonWasPressed(buttonArray[0], t: touch) && buttonArray[0].canBeReleased {
-            buttonArray[1].canBeReleased = true
-        }
-        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[1].canBeReleased {
-            buttonArray[2].canBeReleased = true
-        }
-        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[2].canBeReleased {
-            generateNewButton()
-        }
+//        if buttonWasPressed(buttonArray[0], t: touch) && buttonArray[0].canBeReleased {
+//            buttonArray[1].canBeReleased = true
+//        }
+//        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[1].canBeReleased {
+//            buttonArray[2].canBeReleased = true
+//        }
+//        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[2].canBeReleased {
+//            generateNewButton()
+//        }
         
 //        let button = buttonArray[0]
 //        let buttonCenter = buttonArray[0].positionInPoints

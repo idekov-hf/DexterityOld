@@ -23,9 +23,25 @@ class Button: CCSprite {
         }
     }
     
+    override func onEnter() {
+        super.onEnter()
+        userInteractionEnabled = true
+    }
+    
     func didLoadFromCCB() {
         scale = 0.5
         radius = contentSize.width / 4
+    }
+    
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        wasPressed = true
+        print("\(buttonNumber) was pressed")
+        
+    }
+    
+    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        wasPressed = false
+        print("\(buttonNumber) was released")
     }
     
 }
