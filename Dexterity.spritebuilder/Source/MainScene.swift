@@ -63,11 +63,6 @@ class MainScene: CCNode {
         return false
     }
     
-    // update function
-    override func update(delta: CCTime) {
-        
-    }
-    
     func generateRandomButton() {
         for i in 1...2 {
             let newButton = CCBReader.load("Button") as! Button
