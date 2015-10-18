@@ -14,33 +14,52 @@ class MainScene: CCNode {
     // called when MainScene is loaded
     func didLoadFromCCB() {
         userInteractionEnabled = true
-//        multipleTouchEnabled = true
+        multipleTouchEnabled = true
         generateRandomButton()
     }
     
     // touch functions
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if  buttonWasPressed(buttonArray[0], t: touch) {
-            print("button was pressed")
+            print("button1 was pressed")
             buttonArray[0].wasPressed = true
             buttonArray[1].unlocked = true
+        }
+        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[0].wasPressed {
+            buttonArray[1].wasPressed = true
+            buttonArray[2].unlocked = true
+        }
+        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[1].wasPressed {
+            buttonArray[2].wasPressed = true
+            buttonArray[0].canBeReleased = true
         }
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        let button = buttonArray[0]
-        let buttonCenter = buttonArray[0].positionInPoints
-        let touchLocation = touch.locationInWorld()
-        let radius = button.radius
         
-        let right = buttonCenter.x + radius
-        let left = buttonCenter.x - radius
-        let top = buttonCenter.y + radius
-        let bottom = buttonCenter.y - radius
-        
-        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom && button.wasPressed {
+        if buttonWasPressed(buttonArray[0], t: touch) && buttonArray[0].canBeReleased {
+            buttonArray[1].canBeReleased = true
+        }
+        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[1].canBeReleased {
+            buttonArray[2].canBeReleased = true
+        }
+        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[2].canBeReleased {
             generateNewButton()
         }
+        
+//        let button = buttonArray[0]
+//        let buttonCenter = buttonArray[0].positionInPoints
+//        let touchLocation = touch.locationInWorld()
+//        let radius = button.radius
+//        
+//        let right = buttonCenter.x + radius
+//        let left = buttonCenter.x - radius
+//        let top = buttonCenter.y + radius
+//        let bottom = buttonCenter.y - radius
+//        
+//        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom && button.wasPressed {
+//            generateNewButton()
+//        }
     }
     
     // take Button and touch objects and returns
@@ -64,7 +83,7 @@ class MainScene: CCNode {
     }
     
     func generateRandomButton() {
-        for i in 1...2 {
+        for i in 1...3 {
             let newButton = CCBReader.load("Button") as! Button
             newButton.buttonNumber = i
             let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))

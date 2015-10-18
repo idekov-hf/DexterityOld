@@ -14,6 +14,7 @@ class Button: CCSprite {
     
     var unlocked: Bool = false
     var wasPressed: Bool = false
+    var canBeReleased: Bool = false
     var radius: CGFloat!
     
     var buttonNumber: Int = 0 {
