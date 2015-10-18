@@ -12,7 +12,7 @@ class Button: CCSprite {
     
     weak var numberLabel: CCLabelTTF!
     
-    var locked: Bool = true
+    var unlocked: Bool = false
     var wasPressed: Bool = false
     var radius: CGFloat!
     

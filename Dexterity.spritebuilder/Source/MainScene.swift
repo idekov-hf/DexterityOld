@@ -20,19 +20,10 @@ class MainScene: CCNode {
     
     // touch functions
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        let button = buttonArray[0]
-        let buttonCenter = buttonArray[0].positionInPoints
-        let touchLocation = touch.locationInWorld()
-        let radius = button.radius
-        
-        let right = buttonCenter.x + radius
-        let left = buttonCenter.x - radius
-        let top = buttonCenter.y + radius
-        let bottom = buttonCenter.y - radius
-        
-        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom {
+        if  buttonWasPressed(buttonArray[0], t: touch) {
             print("button was pressed")
-            button.wasPressed = true
+            buttonArray[0].wasPressed = true
+            buttonArray[1].unlocked = true
         }
     }
     
@@ -52,6 +43,26 @@ class MainScene: CCNode {
         }
     }
     
+    // take Button and touch objects and returns
+    // true: if button is pressed
+    // false: if button is not pressed
+    func buttonWasPressed(button: Button, t: CCTouch!) -> Bool {
+        let buttonCenter = button.positionInPoints
+        let touchLocation = t.locationInWorld()
+        let radius = button.radius
+        
+        let right = buttonCenter.x + radius
+        let left = buttonCenter.x - radius
+        let top = buttonCenter.y + radius
+        let bottom = buttonCenter.y - radius
+
+        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom {
+            return true
+        }
+        
+        return false
+    }
+    
     // update function
     override func update(delta: CCTime) {
         
@@ -67,7 +78,7 @@ class MainScene: CCNode {
             buttonsNode.addChild(newButton)
             buttonArray.append(newButton)
         }
-        buttonArray[0].locked = false
+        buttonArray[0].unlocked = true
     }
     
     func generateNewButton() {
