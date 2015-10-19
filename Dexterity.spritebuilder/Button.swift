@@ -23,6 +23,11 @@ class Button: CCSprite {
         }
     }
     
+//    init(num: Int) {
+//        buttonNumber = num
+//        super.init()
+//    }
+    
     override func onEnter() {
         super.onEnter()
         userInteractionEnabled = true
