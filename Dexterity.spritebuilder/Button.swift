@@ -40,13 +40,13 @@ class Button: CCSprite {
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = true
-        print("\(buttonNumber) was pressed")
+//        print("\(buttonNumber) was pressed")
         
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = false
-        print("\(buttonNumber) was released")
+//        print("\(buttonNumber) was released")
     }
     
 }

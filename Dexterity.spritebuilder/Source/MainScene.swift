@@ -26,26 +26,32 @@ class MainScene: CCNode {
     override func update(delta: CCTime) {
         if button1.wasPressed {
             button2.unlocked = true
-            if button2.wasPressed {
-                button3.unlocked = true
-                if button3.wasPressed {
-                    button1.canBeReleased = true
-                }
-            }
         }
         else {
             button2.unlocked = false
         }
+        if button2.wasPressed && button2.unlocked {
+            button3.unlocked = true
+        }
+        else {
+            button3.unlocked = false
+        }
+        if button3.wasPressed && button3.unlocked {
+            button1.canBeReleased = true
+            print(delta)
+        }
         
-        if button1.canBeReleased && !button1.wasPressed {
+        if button1.canBeReleased && !button1.wasPressed && button2.wasPressed && button3.wasPressed {
             button2.canBeReleased = true
-            if button2.canBeReleased && !button2.wasPressed {
-                button3.canBeReleased = true
-                if button3.canBeReleased && !button3.wasPressed {
-                    moveButtons()
-                    button1.canBeReleased = false
-                }
-            }
+        }
+        if button2.canBeReleased && !button2.wasPressed && button3.wasPressed && !button1.wasPressed {
+            button3.canBeReleased = true
+        }
+        if button3.canBeReleased && !button3.wasPressed {
+            moveButtons()
+            button1.canBeReleased = false
+            button2.canBeReleased = false
+            button3.canBeReleased = false
         }
         
         
@@ -77,65 +83,11 @@ class MainScene: CCNode {
     
     // touch functions
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-//        if  buttonWasPressed(buttonArray[0], t: touch) {
-//            print("button1 was pressed")
-//            buttonArray[0].wasPressed = true
-//            buttonArray[1].unlocked = true
-//        }
-//        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[0].wasPressed {
-//            buttonArray[1].wasPressed = true
-//            buttonArray[2].unlocked = true
-//        }
-//        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[1].wasPressed {
-//            buttonArray[2].wasPressed = true
-//            buttonArray[0].canBeReleased = true
-//        }
+        
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-//        if buttonWasPressed(buttonArray[0], t: touch) && buttonArray[0].canBeReleased {
-//            buttonArray[1].canBeReleased = true
-//        }
-//        else if buttonWasPressed(buttonArray[1], t: touch) && buttonArray[1].canBeReleased {
-//            buttonArray[2].canBeReleased = true
-//        }
-//        else if buttonWasPressed(buttonArray[2], t: touch) && buttonArray[2].canBeReleased {
-//            generateNewButton()
-//        }
         
-//        let button = buttonArray[0]
-//        let buttonCenter = buttonArray[0].positionInPoints
-//        let touchLocation = touch.locationInWorld()
-//        let radius = button.radius
-
-//        let right = buttonCenter.x + radius
-//        let left = buttonCenter.x - radius
-//        let top = buttonCenter.y + radius
-//        let bottom = buttonCenter.y - radius
-
-//        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom && button.wasPressed {
-//            generateNewButton()
-//        }
-    }
-    
-    // take Button and touch objects and returns
-    // true: if button is pressed
-    // false: if button is not pressed
-    func buttonWasPressed(button: Button, t: CCTouch!) -> Bool {
-        let buttonCenter = button.positionInPoints
-        let touchLocation = t.locationInWorld()
-        let radius = button.radius
-        
-        let right = buttonCenter.x + radius
-        let left = buttonCenter.x - radius
-        let top = buttonCenter.y + radius
-        let bottom = buttonCenter.y - radius
-
-        if touchLocation.x < right && touchLocation.x > left && touchLocation.y < top && touchLocation.y > bottom {
-            return true
-        }
-        
-        return false
     }
     
     func generateRandomButton() {
