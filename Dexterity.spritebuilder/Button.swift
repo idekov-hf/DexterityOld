@@ -15,7 +15,6 @@ class Button: CCSprite {
     var unlocked: Bool = false
     var wasPressed: Bool = false
     var canBeReleased: Bool = false
-    var radius: CGFloat!
     
     var buttonNumber: Int = 0 {
         didSet {
@@ -23,30 +22,21 @@ class Button: CCSprite {
         }
     }
     
-//    init(num: Int) {
-//        buttonNumber = num
-//        super.init()
-//    }
-    
-    override func onEnter() {
-        super.onEnter()
-        userInteractionEnabled = true
-    }
-    
     func didLoadFromCCB() {
         scale = 0.5
-        radius = contentSize.width / 4
+        userInteractionEnabled = true
+
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = true
-//        print("\(buttonNumber) was pressed")
+        animationManager.runAnimationsForSequenceNamed("pressed")
         
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = false
-//        print("\(buttonNumber) was released")
+        animationManager.runAnimationsForSequenceNamed("default")
     }
     
 }

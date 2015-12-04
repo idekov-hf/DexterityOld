@@ -1,0 +1,4 @@
+var purple1: CCColor = CCColor(red: 184, green: 82, blue: 255)
+var purple2: CCColor = CCColor(red: 202, green: 128, blue: 254)
+var green: CCColor = CCColor(red: 51, green: 204, blue: 51)
+var originalColor: CCColor!

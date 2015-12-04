@@ -23,6 +23,22 @@ class MainScene: CCNode {
         setupButtons()
     }
     
+    func setupButtons() {
+        button1.buttonNumber = 1
+        button2.buttonNumber = 2
+        button3.buttonNumber = 3
+        button1.unlocked = true
+        buttonArray.append(button1)
+        buttonArray.append(button2)
+        buttonArray.append(button3)
+        for button in buttonArray {
+            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))
+            let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
+            button.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
+            buttonsNode.addChild(button)
+        }
+    }
+    
     override func update(delta: CCTime) {
         if button1.wasPressed {
             button2.unlocked = true
@@ -30,13 +46,13 @@ class MainScene: CCNode {
         else {
             button2.unlocked = false
         }
-        if button2.wasPressed && button2.unlocked {
+        if button2.unlocked && button2.wasPressed {
             button3.unlocked = true
         }
         else {
             button3.unlocked = false
         }
-        if button3.wasPressed && button3.unlocked {
+        if button3.unlocked && button3.wasPressed {
             button1.canBeReleased = true
             print(delta)
         }
@@ -55,22 +71,6 @@ class MainScene: CCNode {
         }
         
         
-    }
-    
-    func setupButtons() {
-        button1.buttonNumber = 1
-        button2.buttonNumber = 2
-        button3.buttonNumber = 3
-        button1.unlocked = true
-        buttonArray.append(button1)
-        buttonArray.append(button2)
-        buttonArray.append(button3)
-        for button in buttonArray {
-            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))
-            let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
-            button.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
-            buttonsNode.addChild(button)
-        }
     }
     
     func moveButtons() {
