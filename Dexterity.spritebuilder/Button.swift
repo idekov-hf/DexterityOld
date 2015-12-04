@@ -27,6 +27,7 @@ class Button: CCSprite {
         scale = 0.5
         userInteractionEnabled = true
         particles.zOrder = -1;
+        
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {

@@ -12,6 +12,7 @@ class MainScene: CCNode {
     
     // code connections
     weak var buttonsNode: CCNode!
+    weak var scoreLabel: CCLabelTTF!
     
     // variables
     var screenWidth = CCDirector.sharedDirector().viewSize().width
@@ -22,6 +23,12 @@ class MainScene: CCNode {
     var button1 = CCBReader.load("Button") as! Button
     var button2 = CCBReader.load("Button") as! Button
     var button3 = CCBReader.load("Button") as! Button
+    
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.string = "\(score)"
+        }
+    }
     
     // called when MainScene is loaded
     func didLoadFromCCB() {
@@ -39,7 +46,7 @@ class MainScene: CCNode {
         buttonArray.append(button2)
         buttonArray.append(button3)
         for button in buttonArray {
-            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))
+            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth - button1.contentSize.width)) + UInt32(button1.contentSize.width))
             let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
             button.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
             buttonsNode.addChild(button)
@@ -61,7 +68,11 @@ class MainScene: CCNode {
         }
         if button3.unlocked && button3.wasPressed {
             button1.canBeReleased = true
-            print(delta)
+//            print(delta)
+        }
+        
+        if !button1.wasPressed && !button2.wasPressed && !button3.wasPressed {
+            button1.canBeReleased = false
         }
         
         if button1.canBeReleased && !button1.wasPressed && button2.wasPressed && button3.wasPressed {
@@ -71,18 +82,24 @@ class MainScene: CCNode {
             button3.canBeReleased = true
         }
         if button3.canBeReleased && !button3.wasPressed {
+            increaseScore()
             moveButtons()
             button1.canBeReleased = false
             button2.canBeReleased = false
             button3.canBeReleased = false
         }
-        
-        
+    }
+    
+    func increaseScore() {
+        score++
+        animationManager.runAnimationsForSequenceNamed("score")
     }
     
     func moveButtons() {
+        let lower : UInt32 = 0 // UInt32(button1.contentSizeInPoints.width / 2)
+        let upper : UInt32 = UInt32(screenWidth) // UInt32(screenWidth - button1.contentSizeInPoints.width / 2)
         for button in buttonArray {
-            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))
+            let randomWidth = CGFloat(arc4random_uniform(upper - lower) + lower)
             let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
             button.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
         }
