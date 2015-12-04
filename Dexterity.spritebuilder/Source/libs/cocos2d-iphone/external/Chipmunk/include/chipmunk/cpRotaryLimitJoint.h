@@ -23,23 +23,23 @@
 /// @{
 
 /// Check if a constraint is a damped rotary springs.
-CP_EXPORT cpBool cpConstraintIsRotaryLimitJoint(const cpConstraint *constraint);
+cpBool cpConstraintIsRotaryLimitJoint(const cpConstraint *constraint);
 
 /// Allocate a damped rotary limit joint.
-CP_EXPORT cpRotaryLimitJoint* cpRotaryLimitJointAlloc(void);
+cpRotaryLimitJoint* cpRotaryLimitJointAlloc(void);
 /// Initialize a damped rotary limit joint.
-CP_EXPORT cpRotaryLimitJoint* cpRotaryLimitJointInit(cpRotaryLimitJoint *joint, cpBody *a, cpBody *b, cpFloat min, cpFloat max);
+cpRotaryLimitJoint* cpRotaryLimitJointInit(cpRotaryLimitJoint *joint, cpBody *a, cpBody *b, cpFloat min, cpFloat max);
 /// Allocate and initialize a damped rotary limit joint.
-CP_EXPORT cpConstraint* cpRotaryLimitJointNew(cpBody *a, cpBody *b, cpFloat min, cpFloat max);
+cpConstraint* cpRotaryLimitJointNew(cpBody *a, cpBody *b, cpFloat min, cpFloat max);
 
 /// Get the minimum distance the joint will maintain between the two anchors.
-CP_EXPORT cpFloat cpRotaryLimitJointGetMin(const cpConstraint *constraint);
+cpFloat cpRotaryLimitJointGetMin(const cpConstraint *constraint);
 /// Set the minimum distance the joint will maintain between the two anchors.
-CP_EXPORT void cpRotaryLimitJointSetMin(cpConstraint *constraint, cpFloat min);
+void cpRotaryLimitJointSetMin(cpConstraint *constraint, cpFloat min);
 
 /// Get the maximum distance the joint will maintain between the two anchors.
-CP_EXPORT cpFloat cpRotaryLimitJointGetMax(const cpConstraint *constraint);
+cpFloat cpRotaryLimitJointGetMax(const cpConstraint *constraint);
 /// Set the maximum distance the joint will maintain between the two anchors.
-CP_EXPORT void cpRotaryLimitJointSetMax(cpConstraint *constraint, cpFloat max);
+void cpRotaryLimitJointSetMax(cpConstraint *constraint, cpFloat max);
 
 /// @}

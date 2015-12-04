@@ -52,12 +52,7 @@
  
     id action = [CCActionRemove action];
  */
-@interface CCActionRemove : CCActionInstant {
-    BOOL _cleanUp;
-}
-
-+(id)action;
-+(id)actionWithCleanUp:(BOOL)cleanup;
+@interface CCActionRemove : CCActionInstant
 
 @end
 

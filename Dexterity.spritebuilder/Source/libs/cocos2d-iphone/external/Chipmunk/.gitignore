@@ -9,23 +9,8 @@ project.xcworkspace
 DerivedData
 build
 Chipmunk-Mac
-Chipmunk-iOS
-ObjectiveChipmunk-Mac
-ObjectiveChipmunk-iOS
+Chipmunk-iPhone
 generated_docs
-
-CMakeCache.txt
-CMakeFiles
-Makefile
-cmake_install.cmake
-install_manifest.txt
-
-*.dll
-*.so
-*.so.*
-*.a
-*.exe
-chipmunk_demos
 
 # Visual studio
 *.opensdf

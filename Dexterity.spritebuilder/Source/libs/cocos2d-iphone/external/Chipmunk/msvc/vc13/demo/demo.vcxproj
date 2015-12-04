@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug SCRT|Win32">
       <Configuration>Debug SCRT</Configuration>
@@ -30,7 +30,6 @@
     <ProjectGuid>{659CE82A-959E-46C0-ACCC-A3BE0A0CB860}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>demo</RootNamespace>
-    <ProjectName>chipmunk-demo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,26 +38,26 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug SCRT|Win32'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release SCRT|Win32'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -99,7 +98,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include\chipmunk;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -146,14 +145,14 @@
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include\chipmunk;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\glfw\lib-msvc100;..\..\glew\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\glut\lib;..\..\glfw\lib-msvc100;..\..\glew\lib\Release\Win32</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew32.lib;GLFW.lib;OpenGL32.lib;Glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -184,7 +183,7 @@
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include\chipmunk;..\..\glew\include;..\..\glfw\include</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -197,38 +196,38 @@
     <ProjectReference />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\demo\Bench.c" />
-    <ClCompile Include="..\..\..\demo\Buoyancy.c" />
-    <ClCompile Include="..\..\..\demo\Chains.c" />
-    <ClCompile Include="..\..\..\demo\ChipmunkDebugDraw.c" />
-    <ClCompile Include="..\..\..\demo\ChipmunkDemo.c" />
-    <ClCompile Include="..\..\..\demo\ChipmunkDemoShaderSupport.c" />
-    <ClCompile Include="..\..\..\demo\ChipmunkDemoTextSupport.c" />
-    <ClCompile Include="..\..\..\demo\ContactGraph.c" />
-    <ClCompile Include="..\..\..\demo\Convex.c" />
-    <ClCompile Include="..\..\..\demo\Crane.c" />
-    <ClCompile Include="..\..\..\demo\Joints.c" />
-    <ClCompile Include="..\..\..\demo\LogoSmash.c" />
-    <ClCompile Include="..\..\..\demo\OneWay.c" />
-    <ClCompile Include="..\..\..\demo\Planet.c" />
-    <ClCompile Include="..\..\..\demo\Player.c" />
-    <ClCompile Include="..\..\..\demo\Plink.c" />
-    <ClCompile Include="..\..\..\demo\Pump.c" />
-    <ClCompile Include="..\..\..\demo\PyramidStack.c" />
-    <ClCompile Include="..\..\..\demo\PyramidTopple.c" />
-    <ClCompile Include="..\..\..\demo\Query.c" />
-    <ClCompile Include="..\..\..\demo\Shatter.c" />
-    <ClCompile Include="..\..\..\demo\Slice.c" />
-    <ClCompile Include="..\..\..\demo\Springies.c" />
-    <ClCompile Include="..\..\..\demo\Sticky.c" />
-    <ClCompile Include="..\..\..\demo\Tank.c" />
-    <ClCompile Include="..\..\..\demo\TheoJansen.c" />
-    <ClCompile Include="..\..\..\demo\Tumble.c" />
-    <ClCompile Include="..\..\..\demo\Unicycle.c" />
+    <ClCompile Include="..\..\..\Demo\Bench.c" />
+    <ClCompile Include="..\..\..\Demo\Buoyancy.c" />
+    <ClCompile Include="..\..\..\Demo\Chains.c" />
+    <ClCompile Include="..\..\..\Demo\ChipmunkDebugDraw.c" />
+    <ClCompile Include="..\..\..\Demo\ChipmunkDemo.c" />
+    <ClCompile Include="..\..\..\Demo\ChipmunkDemoShaderSupport.c" />
+    <ClCompile Include="..\..\..\Demo\ChipmunkDemoTextSupport.c" />
+    <ClCompile Include="..\..\..\Demo\ContactGraph.c" />
+    <ClCompile Include="..\..\..\Demo\Convex.c" />
+    <ClCompile Include="..\..\..\Demo\Crane.c" />
+    <ClCompile Include="..\..\..\Demo\Joints.c" />
+    <ClCompile Include="..\..\..\Demo\LogoSmash.c" />
+    <ClCompile Include="..\..\..\Demo\OneWay.c" />
+    <ClCompile Include="..\..\..\Demo\Planet.c" />
+    <ClCompile Include="..\..\..\Demo\Player.c" />
+    <ClCompile Include="..\..\..\Demo\Plink.c" />
+    <ClCompile Include="..\..\..\Demo\Pump.c" />
+    <ClCompile Include="..\..\..\Demo\PyramidStack.c" />
+    <ClCompile Include="..\..\..\Demo\PyramidTopple.c" />
+    <ClCompile Include="..\..\..\Demo\Query.c" />
+    <ClCompile Include="..\..\..\Demo\Shatter.c" />
+    <ClCompile Include="..\..\..\Demo\Slice.c" />
+    <ClCompile Include="..\..\..\Demo\Springies.c" />
+    <ClCompile Include="..\..\..\Demo\Sticky.c" />
+    <ClCompile Include="..\..\..\Demo\Tank.c" />
+    <ClCompile Include="..\..\..\Demo\TheoJansen.c" />
+    <ClCompile Include="..\..\..\Demo\Tumble.c" />
+    <ClCompile Include="..\..\..\Demo\Unicycle.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\demo\ChipmunkDebugDraw.h" />
-    <ClInclude Include="..\..\..\demo\ChipmunkDemo.h" />
+    <ClInclude Include="..\..\..\Demo\ChipmunkDebugDraw.h" />
+    <ClInclude Include="..\..\..\Demo\ChipmunkDemo.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\chipmunk\chipmunk.vcxproj">

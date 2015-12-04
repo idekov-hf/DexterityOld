@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>3</integer>
+	<integer>5</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -284,7 +284,38 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>2</integer>
+				<integer>4</integer>
+				<key>animatedProperties</key>
+				<dict>
+					<key>1</key>
+					<dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
 				<key>baseClass</key>
 				<string>CCParticleSystem</string>
 				<key>children</key>
@@ -294,11 +325,21 @@
 				<key>displayName</key>
 				<string>CCParticleSystem</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>particles</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
 				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
 					<dict>
 						<key>name</key>
 						<string>name</string>
@@ -339,8 +380,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>5</real>
+							<real>5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -351,7 +392,7 @@
 						<key>type</key>
 						<string>IntegerLabeled</string>
 						<key>value</key>
-						<integer>0</integer>
+						<integer>1</integer>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -395,8 +436,8 @@
 						<string>FloatVar</string>
 						<key>value</key>
 						<array>
-							<real>3</real>
-							<real>0.25</real>
+							<real>1</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -406,8 +447,8 @@
 						<string>FloatVar</string>
 						<key>value</key>
 						<array>
-							<real>54</real>
-							<real>10</real>
+							<real>60</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -417,7 +458,7 @@
 						<string>FloatVar</string>
 						<key>value</key>
 						<array>
-							<real>54</real>
+							<real>0.0</real>
 							<real>0.0</real>
 						</array>
 					</dict>
@@ -517,29 +558,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>gravity</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>speed</string>
-						<key>type</key>
-						<string>FloatVar</string>
-						<key>value</key>
-						<array>
-							<real>60</real>
-							<real>20</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>tangentialAccel</string>
+						<string>startRadius</string>
 						<key>type</key>
 						<string>FloatVar</string>
 						<key>value</key>
@@ -550,7 +569,18 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>radialAccel</string>
+						<string>endRadius</string>
+						<key>type</key>
+						<string>FloatVar</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>0.0</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>rotatePerSecond</string>
 						<key>type</key>
 						<string>FloatVar</string>
 						<key>value</key>
@@ -569,6 +599,8 @@
 					</dict>
 				</array>
 				<key>selected</key>
+				<true/>
+				<key>seqExpanded</key>
 				<true/>
 			</dict>
 		</array>

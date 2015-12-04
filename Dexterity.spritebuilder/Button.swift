@@ -11,6 +11,7 @@ import Foundation
 class Button: CCSprite {
     
     weak var numberLabel: CCLabelTTF!
+    weak var particles: CCParticleSystem!
     
     var unlocked: Bool = false
     var wasPressed: Bool = false
@@ -25,18 +26,20 @@ class Button: CCSprite {
     func didLoadFromCCB() {
         scale = 0.5
         userInteractionEnabled = true
-
+        particles.zOrder = -1;
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = true
         animationManager.runAnimationsForSequenceNamed("pressed")
+        scale = 0.6
         
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         wasPressed = false
         animationManager.runAnimationsForSequenceNamed("default")
+        scale = 0.5
     }
     
 }

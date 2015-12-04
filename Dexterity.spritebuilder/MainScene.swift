@@ -1,3 +1,11 @@
+//
+//  MainScene.swift
+//  Dexterity
+//
+//  Created by Iavor Dekov on 12/3/15.
+//  Copyright © 2015 Apportable. All rights reserved.
+//
+
 import Foundation
 
 class MainScene: CCNode {
@@ -19,7 +27,6 @@ class MainScene: CCNode {
     func didLoadFromCCB() {
         userInteractionEnabled = true
         multipleTouchEnabled = true
-//        generateRandomButton()
         setupButtons()
     }
     
@@ -79,34 +86,6 @@ class MainScene: CCNode {
             let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
             button.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
         }
-    }
-    
-    // touch functions
-    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        
-    }
-    
-    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        
-    }
-    
-    func generateRandomButton() {
-        for i in 1...3 {
-            let newButton = CCBReader.load("Button") as! Button
-            newButton.buttonNumber = i
-            let randomWidth = CGFloat(arc4random_uniform(UInt32(screenWidth)))
-            let randomHeight = CGFloat(arc4random_uniform(UInt32(screenHeight)))
-            newButton.positionInPoints = CGPoint(x: randomWidth, y: randomHeight)
-            buttonsNode.addChild(newButton)
-            buttonArray.append(newButton)
-        }
-        buttonArray[0].unlocked = true
-    }
-    
-    func generateNewButton() {
-        buttonsNode.removeAllChildren()
-        buttonArray.removeAll()
-        generateRandomButton()
     }
     
 }

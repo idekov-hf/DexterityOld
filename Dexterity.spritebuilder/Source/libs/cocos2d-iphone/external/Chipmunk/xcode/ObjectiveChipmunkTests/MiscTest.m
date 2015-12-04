@@ -21,7 +21,6 @@
 
 #import <XCTest/XCTest.h>
 #import "ObjectiveChipmunk/ObjectiveChipmunk.h"
-#import "ObjectiveChipmunk/ChipmunkAutoGeometry.h"
 
 
 @interface MiscTest : XCTestCase {}
@@ -66,8 +65,8 @@
 	
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 2.0);
-		cpVect c = cpvadd(cpvmult(a, cpfcos(CP_PI/4.0)), cpvmult(b, cpfsin(CP_PI/4.0)));
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 2.0);
+		cpVect c = cpvadd(cpvmult(a, cpfcos(M_PI/4.0)), cpvmult(b, cpfsin(M_PI/4.0)));
 		cpVect v = cpvslerp(a, b, 0.5);
 		AssertNearlyZero(cpvdist(v, c));
 	}
@@ -93,23 +92,23 @@
 	// Slerp const
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 1.0);
-		cpVect c = cpvadd(cpvmult(a, cpfcos(CP_PI/4.0)), cpvmult(b, cpfsin(CP_PI/4.0)));
-		cpVect v = cpvslerpconst(a, b, CP_PI/4.0);
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 1.0);
+		cpVect c = cpvadd(cpvmult(a, cpfcos(M_PI/4.0)), cpvmult(b, cpfsin(M_PI/4.0)));
+		cpVect v = cpvslerpconst(a, b, M_PI/4.0);
 		AssertNearlyZero(cpvdist(v, c));
 	}
 	
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 1.0);
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 1.0);
 		cpVect c = b;
-		cpVect v = cpvslerpconst(a, b, CP_PI/2.0);
+		cpVect v = cpvslerpconst(a, b, M_PI/2.0);
 		AssertNearlyZero(cpvdist(v, c));
 	}
 	
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 1.0);
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 1.0);
 		cpVect c = b;
 		cpVect v = cpvslerpconst(a, b, INFINITY);
 		AssertNearlyZero(cpvdist(v, c));
@@ -117,7 +116,7 @@
 	
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 1.0);
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 1.0);
 		cpVect c = a;
 		cpVect v = cpvslerpconst(a, b, 0);
 		AssertNearlyZero(cpvdist(v, c));
@@ -125,50 +124,10 @@
 	
 	{
 		cpVect a = cpvmult(cpvforangle(0.0), 1.0);
-		cpVect b = cpvmult(cpvforangle(CP_PI/2.0), 1.0);
-		cpVect c = cpvmult(cpvforangle(CP_PI/4.0), 1.0);
-		cpVect v = cpvslerpconst(a, b, CP_PI/4.0);
+		cpVect b = cpvmult(cpvforangle(M_PI/2.0), 1.0);
+		cpVect c = cpvmult(cpvforangle(M_PI/4.0), 1.0);
+		cpVect v = cpvslerpconst(a, b, M_PI/4.0);
 		AssertNearlyZero(cpvdist(v, c));
-	}
-}
-
--(void)testImageSamplerLA
-{
-	{
-		NSBundle *bundle = [NSBundle bundleForClass:self.class];
-		CGImageRef image = [ChipmunkImageSampler loadImage:[bundle URLForResource:@"TestImageLA" withExtension:@"png"]];
-		ChipmunkAbstractSampler *sampler = [[ChipmunkImageSampler alloc] initWithImage:image isMask:TRUE contextWidth:0 contextHeight:0];
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 0.5)], (cpFloat)0.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 3.5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(3.5, 0.5)], (cpFloat)1.0, 1e-5, @"");
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(2.0 - 1e-5, 0.5)], (cpFloat)0.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(2.0 + 1e-5, 0.5)], (cpFloat)1.0, 1e-5, @"");
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 2.0 - 1e-5)], (cpFloat)0.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 2.0 + 1e-5)], (cpFloat)1.0, 1e-5, @"");
-		
-		[sampler release];
-	}
-	
-	{
-		NSBundle *bundle = [NSBundle bundleForClass:self.class];
-		CGImageRef image = [ChipmunkImageSampler loadImage:[bundle URLForResource:@"TestImageLA" withExtension:@"png"]];
-		ChipmunkAbstractSampler *sampler = [[ChipmunkImageSampler alloc] initWithImage:image isMask:FALSE contextWidth:0 contextHeight:0];
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 0.5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(0.5, 3.5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(3.5, 0.5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(3.5, 3.5)], (cpFloat)0.0, 1e-5, @"");
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(2.0 - 1e-5, 3.5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(2.0 + 1e-5, 3.5)], (cpFloat)0.0, 1e-5, @"");
-		
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(3.5, 2.0 - 1e-5)], (cpFloat)1.0, 1e-5, @"");
-		XCTAssertEqualWithAccuracy([sampler sample:cpv(3.5, 2.0 + 1e-5)], (cpFloat)0.0, 1e-5, @"");
-		
-		[sampler release];
 	}
 }
 
@@ -215,7 +174,5 @@
 	cpFloat area6 = cpAreaForPoly(2, (cpVect[]){cpv(-1,-1), cpv(1,-1), cpv(1,1), cpv(-1,1)}, 1.0);
 	XCTAssertEqualWithAccuracy(area5, area6, 1e-3, @"");
 }
-
-
 
 @end

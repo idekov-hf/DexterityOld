@@ -149,8 +149,7 @@ cpTransformRigidInverse(cpTransform t)
   );
 }
 
-//MARK: Miscellaneous (but useful) transformation matrices.
-// See source for documentation...
+// Miscelaneous (but useful) transformation matrices.
 
 static inline cpTransform
 cpTransformWrap(cpTransform outer, cpTransform inner)
